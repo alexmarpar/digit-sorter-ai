@@ -8,21 +8,21 @@ function App() {
   const [prediction, setPrediction] = useState<number | null>(null);
 
   async function predict() {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  const canvas = canvasRef.current;
+  if (!canvas) return;
 
-    try {
-      const image = await canvas.exportImage("png");
+  try {
+    const image = await canvasRef.current?.exportImage("png");
 
-      const response = await axios.post("http://localhost:8000/predict", {
-        image,
-      });
-
-      setPrediction(response.data.prediction);
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await axios.post("http://localhost:8000/filtercanvas", {
+      image,
+    });
+    
+    setPrediction(Number(response.data));
+  } catch (error) {
+    console.error(error);
   }
+}
 
   async function clear() {
     const canvas = canvasRef.current;
@@ -46,7 +46,7 @@ function App() {
           ref={canvasRef}
           width="300px"
           height="300px"
-          strokeWidth={15}
+          strokeWidth={14}
           strokeColor="black"
           style={{
             borderRadius: "10px",
