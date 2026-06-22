@@ -1,9 +1,7 @@
 from fastapi import FastAPI, Request
 from routers import filtercanvas
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi import Limiter
-from slowapi.util import get_remote_address
+from core.rate_limiter import limiter
 from slowapi.errors import RateLimitExceeded
 from fastapi.responses import JSONResponse
 
@@ -22,11 +20,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-limiter = Limiter(key_func=get_remote_address)
-
 
 app.state.limiter = limiter
-
 
 @app.exception_handler(RateLimitExceeded)
 def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -34,12 +29,5 @@ def rate_limit_handler(request: Request, exc: RateLimitExceeded):
         status_code=429,
         content={"detail": "Too many requests, wait a bit"}
     )
-
-
-@app.post("/filtercanvas")
-@limiter.limit("20/minute")  
-def filter_canvas(request: Request):
-    return {"result": "Executed model"}
-
 # Routers
 app.include_router(filtercanvas.router)
