@@ -14,7 +14,7 @@ function App() {
   try {
     const image = await canvasRef.current?.exportImage("png");
 
-    const response = await axios.post("http://localhost:8000/filtercanvas", {
+    const response = await axios.post("https://digit-sorter-ai-backend.vercel.app/filtercanvas/", {
       image,
     });
     
