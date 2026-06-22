@@ -5,19 +5,19 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI(
-    #docs_url=None,
-    #redoc_url=None
+    docs_url=None,
+    redoc_url=None
 )
 
 origins = [
-    "http://localhost:5173",
+    "https://digit-sorter-ai.vercel.app/",
 ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["POST"],
+    allow_headers=["Content-Type""],
 )
 
 # Routers
