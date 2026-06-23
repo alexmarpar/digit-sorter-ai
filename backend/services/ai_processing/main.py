@@ -16,7 +16,7 @@ def softmax(x):
 def preprocess(image):
     image = image.convert("L")          # grayscale
 
-    image = image.resize((28, 28))      # 🔴 CLAVE QUE TE FALTA
+    image = image.resize((28, 28))
 
     img = np.array(image).astype(np.float32)
 

@@ -61,20 +61,20 @@ function App() {
           onClick={predict}
           className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition font-medium cursor-pointer pointer-events-auto"
         >
-          Predecir
+          Predict
         </button>
 
         <button
           onClick={clear}
           className="px-5 py-2 rounded-lg bg-zinc-700 hover:bg-zinc-600 transition font-medium cursor-pointer pointer-events-auto"
         >
-          Limpiar
+          Clear
         </button>
       </div>
 
       {/* Prediction */}
       <div className="mt-6 text-center">
-        <p className="text-zinc-400">Predicción:</p>
+        <p className="text-zinc-400">Prediction:</p>
         <p className="text-4xl font-bold mt-2 text-green-400">
           {prediction ?? "-"}
         </p>
@@ -82,7 +82,7 @@ function App() {
 
       {/* Footer */}
       <footer className="mt-12 text-sm text-zinc-500 border-t border-zinc-800 pt-6 w-full text-center">
-        © {new Date().getFullYear()} Alexmarpar. Todos los derechos reservados.
+        © {new Date().getFullYear()} Alexmarpar. All rights reserved.
       </footer>
     </div>
   );
